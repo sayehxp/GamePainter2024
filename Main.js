@@ -3,6 +3,9 @@ import { Keyboard } from './Keyboard.js';
 import { PlayerControls } from './PlayerControls.js';
 import { Background } from './Background.js';
 import { Gift } from './Gift.js';
+import { TimeLine } from './Timeline.js';
+
+
 
 class GameBoard {
 
@@ -16,20 +19,24 @@ class GameBoard {
         }
         this.keyboard = new Keyboard();
         this.background = new Background(this, 'offwhite');
-        this.gift = new Gift(this, 1, 1 * 100);
+        this.gift = new Gift(this, 3, 1 * 100);
+        this.timeline = new TimeLine()
 
     }
 
     update() {
         this.gift.update();
+        this.timeline.update();
         for (const player in this.players) {
             this.players[player].update(PlayerControls(player));
         }
+
     }
 
 
     draw() {
-        this.gift.draw()
+        this.gift.draw();
+        this.timeline.draw();
         for (const player in this.players) {
             this.players[player].draw();
         }
@@ -45,13 +52,18 @@ class GameBoard {
 const canvas = document.getElementById('canvas1');
 const context = canvas.getContext('2d');
 canvas.width = window.innerWidth - 10;
-canvas.height = window.innerHeight - 10;
+canvas.height = window.innerHeight - 50;
 
 const gameBoard = new GameBoard(canvas.width, canvas.height, context);
 function renderFrame() {
     gameBoard.update();
     gameBoard.draw();
-    requestAnimationFrame(renderFrame)
+    requestAnimationFrame(renderFrame);
+
 }
 
+
+
+
 renderFrame();
+

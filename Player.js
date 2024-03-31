@@ -6,11 +6,13 @@ export class Player {
         this.context = this.gameBoard.context
         this.x = x;
         this.y = y;
-        this.speed = 4;
+        this.speed = 3.25;
         this.radius = 25
         this.width = this.radius * 2;
         this.height = this.radius * 2;
-        this.playerImage = document.getElementById(name)
+        this.playerImage = document.getElementById(name);
+        this.playerGift = undefined;
+
     }
 
     update(keys) {
@@ -61,11 +63,12 @@ export class Player {
         const startPoint = this.x >= this.gameBoard.gift.points.x - safeZone && this.y >= this.gameBoard.gift.points.y - safeZone;
         const endPoint = this.x <= this.gameBoard.gift.points.x + this.gameBoard.gift.size + safeZone && this.y <= this.gameBoard.gift.points.y + this.gameBoard.gift.size + safeZone
         if (startPoint && endPoint) {
-
+            document.getElementById('gift_sound').play()
 
             switch (this.gameBoard.gift.selectedGift) {
                 case 'speed':
-                    this.speed += 3;
+                    this.speed += 2.5;
+                    this.playerGift = 'speed'
                     this.gameBoard.gift.clear()
                     break;
                 case 'slow':
@@ -79,7 +82,22 @@ export class Player {
                     //     this.speed -= 2;
                     //   }, 5500);
                     break;
+                case 'spot':
+                    this.playerGift = 'spot';
 
+
+                    var yy = this.y
+                    if (yy + 200 >= this.gameBoard.height) {
+                        yy -= (yy + 200) - this.gameBoard.height
+                    }
+                    if (yy - 200 <= 0) {
+                        yy -= (yy - 200)
+                    }
+                    drawBigCircle(this.context, this.x, yy, 200, this.name)
+
+
+                    this.gameBoard.gift.clear()
+                    break;
 
                 default:
                     break;
@@ -100,14 +118,69 @@ export class Player {
         this.context.closePath();
         this.context.fill();
 
-
-
-        this.playerImage.style.top = `${this.y - this.playerImage.clientHeight/2}px`;
-        this.playerImage.style.left = `${this.x - this.playerImage.clientWidth/2 }px`;
+        if (this.playerGift == 'speed') {
+            document.getElementById('electric').style.top = `${this.y - this.playerImage.clientHeight / 2}px`;
+            document.getElementById('electric').style.left = `${this.x - this.playerImage.clientWidth / 2}px`;
+        }
+        this.playerImage.style.top = `${this.y - this.playerImage.clientHeight / 2}px`;
+        this.playerImage.style.left = `${this.x - this.playerImage.clientWidth / 2 + 5}px`;
 
 
 
     }
+}
+
+function drawBigCircle(ctx, x, y, size, color) {
+
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.arc(x, y, size, 0, 2 * Math.PI);
+    ctx.closePath();
+    ctx.fill();
+
+}
+function drawHeart(ctx, x, y, width, height, color) {
+
+
+
+
+    ctx.save();
+    ctx.beginPath();
+    var topCurveHeight = height * 0.3;
+    ctx.moveTo(x, y + topCurveHeight);
+    // top left curve
+    ctx.bezierCurveTo(
+        x, y,
+        x - width / 2, y,
+        x - width / 2, y + topCurveHeight
+    );
+
+    // bottom left curve
+    ctx.bezierCurveTo(
+        x - width / 2, y + (height + topCurveHeight) / 2,
+        x, y + (height + topCurveHeight) / 2,
+        x, y + height
+    );
+
+    // bottom right curve
+    ctx.bezierCurveTo(
+        x, y + (height + topCurveHeight) / 2,
+        x + width / 2, y + (height + topCurveHeight) / 2,
+        x + width / 2, y + topCurveHeight
+    );
+
+    // top right curve
+    ctx.bezierCurveTo(
+        x + width / 2, y,
+        x, y,
+        x, y + topCurveHeight
+    );
+
+    ctx.closePath();
+    ctx.fillStyle = color;
+    ctx.fill();
+    ctx.restore();
+
 }
 
 

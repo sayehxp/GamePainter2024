@@ -1,15 +1,17 @@
 //@ts-check
+
 export class Gift {
     constructor(gameboard, count, duration) {
         this.gameboard = gameboard
         this.count = count;
         this.duration = duration;
-        this.gifts = ['speed', 'speed', 'speed'];
+        this.gifts = ['spot', 'spot', 'spot'];
         this.effect = 'effect'
-        this.size = 100;
+        this.size = 80;
         this.selectedGift = '';
         this.points = {};
         this.timer = 0;
+     
     }
 
 
@@ -20,32 +22,27 @@ export class Gift {
             this.points.y = randomPoints(this.gameboard.height, this.size);
             this.selectedGift = this.gifts[randomIndex(this.gifts.length)];
         }
-
     }
-
 
     draw() {
         if (this.timer == this.duration && this.count > 0) {
-            
             this.clear();
 
             setTimeout(() => {
                 drawImage(this.effect, this.points.x, this.points.y, this.size)
                 drawImage(this.selectedGift, this.points.x, this.points.y, this.size)
-            }, 500);
-
+            }, 100);
             this.timer = 0;
             this.count--;
-
         }
     }
 
 
     clear() {
-       
+
         clearImage(this.effect)
         clearImage(this.selectedGift)
-        
+
     }
 
 }
@@ -67,6 +64,7 @@ export const clearImage = (id) => {
     const img = document.getElementById(id);
     img?.classList.remove('bounce-in-fwd')
     img?.classList.remove('effect');
+    //@ts-ignore
     img.style.display = 'none';
 
 }

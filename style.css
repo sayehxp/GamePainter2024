@@ -12,14 +12,23 @@
 body {
     overflow: hidden;
 }
-
+.heartbeat{-webkit-animation:heartbeat 1.5s ease-in-out infinite both;animation:heartbeat 1.5s ease-in-out infinite both}
+@-webkit-keyframes heartbeat{from{-webkit-transform:scale(1);transform:scale(1);-webkit-transform-origin:center center;transform-origin:center center;-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}10%{-webkit-transform:scale(.91);transform:scale(.91);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}17%{-webkit-transform:scale(.98);transform:scale(.98);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}33%{-webkit-transform:scale(.87);transform:scale(.87);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}45%{-webkit-transform:scale(1);transform:scale(1);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}}@keyframes heartbeat{from{-webkit-transform:scale(1);transform:scale(1);-webkit-transform-origin:center center;transform-origin:center center;-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}10%{-webkit-transform:scale(.91);transform:scale(.91);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}17%{-webkit-transform:scale(.98);transform:scale(.98);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}33%{-webkit-transform:scale(.87);transform:scale(.87);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}45%{-webkit-transform:scale(1);transform:scale(1);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}}
 .playerImg {
     position: absolute;
     background: transparent;
     object-fit: cover;
-    width: 80px;
-    height: 80px;
+    width: 75px;
+    height: 75px;
 
+}
+
+.electric{
+    position: absolute;
+    background: transparent;
+    object-fit: cover;
+    width: 40px;
+    height: 40px;
 }
 
 
@@ -151,5 +160,61 @@ body {
         transform: scale(1);
         -webkit-animation-timing-function: ease-out;
         animation-timing-function: ease-out
+    }
+}
+
+
+
+
+
+.timeline {
+    background-color: #c1bfb3;
+    height: 50px;
+    display: flex;
+    padding-right: 30px;
+    
+    span {        
+        color: whitesmoke;
+        font-size: xx-large;
+        text-shadow: 1px 1px rgba(0, 0, 0, 0.651);
+        padding-inline: 20px;
+        text-wrap: nowrap;
+        border: 1px solid black;
+        margin-inline-end: 20px;
+    }
+
+    ul {
+        
+        display: flex;
+        list-style: none;
+        align-items: center;
+        width: 100%;
+        justify-content: space-between;
+        
+    }
+
+    li {
+        width: 20px;
+        height: 20px;
+        background-color: grey;
+        border-radius: 50%;
+    }
+
+
+    li.active::after {
+        content: "";
+        display: block;
+        background-color: white;
+        height: inherit;
+        border-radius: 50%;
+    }
+
+
+    li.activeGift::after {
+        content: "";
+        display: block;
+        background-color: rgb(180, 52, 52);
+        height: inherit;
+        border-radius: 50%;
     }
 }
