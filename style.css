@@ -12,18 +12,122 @@
 body {
     overflow: hidden;
 }
-.heartbeat{-webkit-animation:heartbeat 1.5s ease-in-out infinite both;animation:heartbeat 1.5s ease-in-out infinite both}
-@-webkit-keyframes heartbeat{from{-webkit-transform:scale(1);transform:scale(1);-webkit-transform-origin:center center;transform-origin:center center;-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}10%{-webkit-transform:scale(.91);transform:scale(.91);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}17%{-webkit-transform:scale(.98);transform:scale(.98);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}33%{-webkit-transform:scale(.87);transform:scale(.87);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}45%{-webkit-transform:scale(1);transform:scale(1);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}}@keyframes heartbeat{from{-webkit-transform:scale(1);transform:scale(1);-webkit-transform-origin:center center;transform-origin:center center;-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}10%{-webkit-transform:scale(.91);transform:scale(.91);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}17%{-webkit-transform:scale(.98);transform:scale(.98);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}33%{-webkit-transform:scale(.87);transform:scale(.87);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}45%{-webkit-transform:scale(1);transform:scale(1);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}}
+
+.heartbeat {
+    -webkit-animation: heartbeat 1.5s ease-in-out infinite both;
+    animation: heartbeat 1.5s ease-in-out infinite both
+}
+
+@-webkit-keyframes heartbeat {
+    from {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-transform-origin: center center;
+        transform-origin: center center;
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out
+    }
+
+    10% {
+        -webkit-transform: scale(.91);
+        transform: scale(.91);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in
+    }
+
+    17% {
+        -webkit-transform: scale(.98);
+        transform: scale(.98);
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out
+    }
+
+    33% {
+        -webkit-transform: scale(.87);
+        transform: scale(.87);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in
+    }
+
+    45% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out
+    }
+}
+
+@keyframes heartbeat {
+    from {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-transform-origin: center center;
+        transform-origin: center center;
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out
+    }
+
+    10% {
+        -webkit-transform: scale(.91);
+        transform: scale(.91);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in
+    }
+
+    17% {
+        -webkit-transform: scale(.98);
+        transform: scale(.98);
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out
+    }
+
+    33% {
+        -webkit-transform: scale(.87);
+        transform: scale(.87);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in
+    }
+
+    45% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out
+    }
+}
+
 .playerImg {
     position: absolute;
     background: transparent;
-    object-fit: cover;
+    object-fit: contain;
     width: 75px;
     height: 75px;
 
+
+
+
+}
+/* HTML: <div class="loader"></div> */
+
+/* HTML: <div class="loader"></div> */
+/* HTML: <div class="loader"></div> */
+
+/* HTML: <div class="loader"></div> */
+
+
+.playerShadow{
+    position: absolute;
+    z-index: 1;
+
+    width: 50px;
+    height: 20px;
+    background-color: #2c2a2a98;
+    border-radius: 50%;
+    box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.3);
+
 }
 
-.electric{
+.electric {
     position: absolute;
     background: transparent;
     object-fit: cover;
@@ -172,8 +276,8 @@ body {
     height: 50px;
     display: flex;
     padding-right: 30px;
-    
-    span {        
+
+    span {
         color: whitesmoke;
         font-size: xx-large;
         text-shadow: 1px 1px rgba(0, 0, 0, 0.651);
@@ -184,13 +288,13 @@ body {
     }
 
     ul {
-        
+
         display: flex;
         list-style: none;
         align-items: center;
         width: 100%;
         justify-content: space-between;
-        
+
     }
 
     li {
@@ -198,6 +302,7 @@ body {
         height: 20px;
         background-color: grey;
         border-radius: 50%;
+
     }
 
 
@@ -217,4 +322,12 @@ body {
         height: inherit;
         border-radius: 50%;
     }
+}
+
+
+
+
+
+.darkness {
+    filter: brightness(0.2);
 }

@@ -15,7 +15,7 @@ export class TimeLine {
 
 
     update() {
-        if (this.time < 2000){
+        if (this.time < 2000) {
             this.time++;
         }
     }
@@ -24,14 +24,14 @@ export class TimeLine {
 
     draw() {
 
-        if (this.time % 100 == 0) {
+        if (this.time % 100 == 0 && this.time < 2000) {
             var LIs = this.Units.children;
             var li = Array.from(LIs).find((li) =>
                 (!li.classList.contains('active') && !li.classList.contains('activeGift'))
             )
 
 
-            if (this.time % 500 == 0 & this.time != 2000) {
+            if (this.time % 500 == 0) {
                 li.classList.add('activeGift');
             } else {
                 li.classList.add('active')

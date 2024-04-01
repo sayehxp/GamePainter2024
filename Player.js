@@ -1,6 +1,8 @@
+
+
 export class Player {
 
-    constructor(gameBoard, x, y, name) {
+    constructor(gameBoard, x, y, name, color) {
         this.gameBoard = gameBoard;
         this.name = name;
         this.context = this.gameBoard.context
@@ -11,12 +13,14 @@ export class Player {
         this.width = this.radius * 2;
         this.height = this.radius * 2;
         this.playerImage = document.getElementById(name);
+        this.playerShadow = document.getElementById(`${name}_shadow`);
         this.playerGift = undefined;
+        this.color = color
 
     }
 
     update(keys) {
-
+  
         //right
         if (this.gameBoard.keyboard.keys.includes(keys.right)) {
             this.x += this.speed;
@@ -93,7 +97,10 @@ export class Player {
                     if (yy - 200 <= 0) {
                         yy -= (yy - 200)
                     }
-                    drawBigCircle(this.context, this.x, yy, 200, this.name)
+            
+
+                    drawBigCircle(this.context, this.x, yy, 200, this.color)
+
 
 
                     this.gameBoard.gift.clear()
@@ -112,7 +119,7 @@ export class Player {
 
     draw() {
 
-        this.context.fillStyle = this.name;
+        this.context.fillStyle = this.color;
         this.context.beginPath();
         this.context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
         this.context.closePath();
@@ -124,6 +131,10 @@ export class Player {
         }
         this.playerImage.style.top = `${this.y - this.playerImage.clientHeight / 2}px`;
         this.playerImage.style.left = `${this.x - this.playerImage.clientWidth / 2 + 5}px`;
+        
+        
+        this.playerShadow.style.top = `${this.y - this.playerImage.clientHeight / 2 + 60}px`;
+        this.playerShadow.style.left = `${this.x - this.playerImage.clientWidth / 2 + 18}px`;
 
 
 
@@ -139,48 +150,48 @@ function drawBigCircle(ctx, x, y, size, color) {
     ctx.fill();
 
 }
-function drawHeart(ctx, x, y, width, height, color) {
+// function drawHeart(ctx, x, y, width, height, color) {
 
 
 
 
-    ctx.save();
-    ctx.beginPath();
-    var topCurveHeight = height * 0.3;
-    ctx.moveTo(x, y + topCurveHeight);
-    // top left curve
-    ctx.bezierCurveTo(
-        x, y,
-        x - width / 2, y,
-        x - width / 2, y + topCurveHeight
-    );
+//     ctx.save();
+//     ctx.beginPath();
+//     var topCurveHeight = height * 0.3;
+//     ctx.moveTo(x, y + topCurveHeight);
+//     // top left curve
+//     ctx.bezierCurveTo(
+//         x, y,
+//         x - width / 2, y,
+//         x - width / 2, y + topCurveHeight
+//     );
 
-    // bottom left curve
-    ctx.bezierCurveTo(
-        x - width / 2, y + (height + topCurveHeight) / 2,
-        x, y + (height + topCurveHeight) / 2,
-        x, y + height
-    );
+//     // bottom left curve
+//     ctx.bezierCurveTo(
+//         x - width / 2, y + (height + topCurveHeight) / 2,
+//         x, y + (height + topCurveHeight) / 2,
+//         x, y + height
+//     );
 
-    // bottom right curve
-    ctx.bezierCurveTo(
-        x, y + (height + topCurveHeight) / 2,
-        x + width / 2, y + (height + topCurveHeight) / 2,
-        x + width / 2, y + topCurveHeight
-    );
+//     // bottom right curve
+//     ctx.bezierCurveTo(
+//         x, y + (height + topCurveHeight) / 2,
+//         x + width / 2, y + (height + topCurveHeight) / 2,
+//         x + width / 2, y + topCurveHeight
+//     );
 
-    // top right curve
-    ctx.bezierCurveTo(
-        x + width / 2, y,
-        x, y,
-        x, y + topCurveHeight
-    );
+//     // top right curve
+//     ctx.bezierCurveTo(
+//         x + width / 2, y,
+//         x, y,
+//         x, y + topCurveHeight
+//     );
 
-    ctx.closePath();
-    ctx.fillStyle = color;
-    ctx.fill();
-    ctx.restore();
+//     ctx.closePath();
+//     ctx.fillStyle = color;
+//     ctx.fill();
+//     ctx.restore();
 
-}
+// }
 
 

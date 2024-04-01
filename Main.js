@@ -14,12 +14,12 @@ class GameBoard {
         this.height = height;
         this.context = context;
         this.players = {
-            player1: new Player(this, 100, 100, 'green'),
-            player2: new Player(this, 200, 100, 'blue')
+            player1: new Player(this, 100, 100, 'green', "#008b68"),
+            player2: new Player(this, 200, 100, 'blue', '#ab72fb')
         }
         this.keyboard = new Keyboard();
         this.background = new Background(this, 'offwhite');
-        this.gift = new Gift(this, 3, 1 * 100);
+        this.gift = new Gift(this, 3, 4 * 100);
         this.timeline = new TimeLine()
 
     }
