@@ -8,6 +8,7 @@ export class TimeLine {
     }
 
     init() {
+        this.Units.innerHTML = "";
         for (let i = 0; i < 20; i++) {
             this.Units.innerHTML += '<li></li>'
         }

@@ -1,8 +1,10 @@
+import { TimeLine } from "./Timeline.js";
+import { bot1 } from './BotMoves.js';
 
 
 export class Player {
 
-    constructor(gameBoard, x, y, name, color) {
+    constructor(gameBoard, x, y, name, color, isBot = false) {
         this.gameBoard = gameBoard;
         this.name = name;
         this.context = this.gameBoard.context
@@ -15,50 +17,101 @@ export class Player {
         this.playerImage = document.getElementById(name);
         this.playerShadow = document.getElementById(`${name}_shadow`);
         this.playerGift = undefined;
-        this.color = color
+        this.color = color;
+        this.isBot = isBot;
+        this.eventLog = {};
+        this.timeline = new TimeLine();
 
     }
 
+
+
     update(keys) {
-  
-        //right
-        if (this.gameBoard.keyboard.keys.includes(keys.right)) {
-            this.x += this.speed;
+        if (this.timeline.time < 2000) {
+            this.timeline.update()
         }
-        //left
-        if (this.gameBoard.keyboard.keys.includes(keys.left)) {
-            this.x -= this.speed;
+        if (!this.isBot) {
+            this.HumanDrive(keys)
+        } else {
+            this.BotDrive()
         }
-        //up
-        if (this.gameBoard.keyboard.keys.includes(keys.up)) {
-            this.y -= this.speed;
-        }
-        //down
-        if (this.gameBoard.keyboard.keys.includes(keys.down)) {
-            this.y += this.speed;
-        }
-        //most right
+
+
+        this.recognizeGift()
+
+        //max right →
         if (this.x + this.radius > this.gameBoard.width) {
             this.x = this.gameBoard.width - this.radius;
         }
-        //most left
+        //max left ←
         if (this.x < this.radius) {
             this.x = this.radius;
         }
-        //most down
+        //max down ↓
         if ((this.y + this.radius) > this.gameBoard.height) {
             this.y = this.gameBoard.height - this.radius;
         }
-        //most up
+        //max up ↑
         if (this.y < this.radius) {
             this.y = this.radius;
         }
 
-        if (this.gameBoard.keyboard.keys.length) {
-            this.recognizeGift()
-        }
+
+
 
     }
+    HumanDrive(keys) {
+        this.eventLog[this.timeline.time] = this.gameBoard.keyboard.keys
+        if (this.gameBoard.keyboard.keys.includes(keys.right)) {
+            this.x += this.speed;
+        }
+        if (this.gameBoard.keyboard.keys.includes(keys.left)) {
+            this.x -= this.speed
+        }
+        if (this.gameBoard.keyboard.keys.includes(keys.up)) {
+            this.y -= this.speed
+        }
+        if (this.gameBoard.keyboard.keys.includes(keys.down)) {
+            this.y += this.speed
+        }
+
+
+        if (this.timeline.time >= 2000) {
+            console.log(this.eventLog);
+
+        }
+    }
+
+    BotDrive() {
+ 
+        //    var keys =  this.gameBoard.keyboard.keys = (bot1[this.timeline.time])
+        //  console.log(keys)
+        //     if (this.gameBoard.keyboard.keys.includes(keys.right)) {
+        //         this.x += this.speed;
+        //     }
+        //     if (this.gameBoard.keyboard.keys.includes(keys.left)) {
+        //         this.x -= this.speed
+        //     }
+        //     if (this.gameBoard.keyboard.keys.includes(keys.up)) {
+        //         this.y -= this.speed
+        //     }
+        //     if (this.gameBoard.keyboard.keys.includes(keys.down)) {
+        //         this.y += this.speed
+        //     }
+    
+
+        // this.x += this.speed;
+
+        // if (Math.floor(Math.random() * 2)) {
+
+        // }
+
+        // //max right
+        // if (this.x + this.radius > this.gameBoard.width) {
+        //     this.x = this.gameBoard.width - this.radius;
+        // }
+    }
+
 
 
     recognizeGift() {
@@ -97,7 +150,7 @@ export class Player {
                     if (yy - 200 <= 0) {
                         yy -= (yy - 200)
                     }
-            
+
 
                     drawBigCircle(this.context, this.x, yy, 200, this.color)
 
@@ -131,14 +184,16 @@ export class Player {
         }
         this.playerImage.style.top = `${this.y - this.playerImage.clientHeight / 2}px`;
         this.playerImage.style.left = `${this.x - this.playerImage.clientWidth / 2 + 5}px`;
-        
-        
+
+
         this.playerShadow.style.top = `${this.y - this.playerImage.clientHeight / 2 + 60}px`;
         this.playerShadow.style.left = `${this.x - this.playerImage.clientWidth / 2 + 18}px`;
 
 
 
     }
+
+
 }
 
 function drawBigCircle(ctx, x, y, size, color) {

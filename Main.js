@@ -14,8 +14,9 @@ class GameBoard {
         this.height = height;
         this.context = context;
         this.players = {
-            player1: new Player(this, 100, 100, 'green', "#008b68"),
-            player2: new Player(this, 200, 100, 'blue', '#ab72fb')
+            player1: new Player(this, 100, 100, 'green', "#008b68", false),
+            player2: new Player(this, 200, 100, 'blue', '#4062ca', false),
+            player3: new Player(this, 300, 100, 'yellow', '#df9023', false)
         }
         this.keyboard = new Keyboard();
         this.background = new Background(this, 'offwhite');

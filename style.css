@@ -331,3 +331,10 @@ body {
 .darkness {
     filter: brightness(0.2);
 }
+body{
+    overflow: hidden;
+}
+audio{
+    visibility: hidden;
+    transform: translate(-500px);
+}
