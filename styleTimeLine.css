@@ -1,0 +1,19 @@
+.timeline {
+    width: 95%;
+    height: 40px;
+    background: #177ce1;  
+    border-radius:18px;
+    margin-left: 10px;
+}
+
+
+
+
+.fill{
+        margin-left: 2px;
+        width: 10%;
+        border-radius:inherit;
+        height: 40px;
+        background: rgb(255,255,255);
+        background: linear-gradient(180deg, rgba(255,255,255,1) 5%, rgba(152,87,14,1) 62%);
+    }

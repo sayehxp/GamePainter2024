@@ -4,6 +4,7 @@ import { PlayerControls } from './PlayerControls.js';
 import { Background } from './Background.js';
 import { Gift } from './Gift.js';
 import { TimeLine } from './Timeline.js';
+import { BotPlayer } from './BotPlayer.js';
 
 
 
@@ -14,14 +15,15 @@ class GameBoard {
         this.height = height;
         this.context = context;
         this.players = {
-            player1: new Player(this, 100, 100, 'green', "#008b68", false),
-            player2: new Player(this, 200, 100, 'blue', '#4062ca', false),
-            player3: new Player(this, 300, 100, 'yellow', '#df9023', false)
+            // player1: new Player(this, 100, 100, 'green', "#008b68"),
+            player2: new Player(this, 200, 100, 'blue', '#4062ca'),
+            player3: new Player(this, 300, 100, 'yellow', '#8061bb')
         }
         this.keyboard = new Keyboard();
         this.background = new Background(this, 'offwhite');
-        this.gift = new Gift(this, 3, 4 * 100);
-        this.timeline = new TimeLine()
+        this.gift = new Gift(this, 20, 3 * 100);
+        this.timeline = new TimeLine();
+        this.botPlayer = new BotPlayer(this, 400, 100, 'green', '#008b68');
 
     }
 
@@ -30,8 +32,9 @@ class GameBoard {
         this.timeline.update();
         for (const player in this.players) {
             this.players[player].update(PlayerControls(player));
+            this.players[player].recognizeGift();
         }
-
+        this.botPlayer.update()
     }
 
 
@@ -41,6 +44,7 @@ class GameBoard {
         for (const player in this.players) {
             this.players[player].draw();
         }
+        this.botPlayer.draw();
 
     }
 
