@@ -4,45 +4,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Ball Painter</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./styleLeaderBoard.css">
+    <link rel="stylesheet" href="./styleGameMenu.css">
+    <link rel="stylesheet" href="./styleInterface.css">
+    <link rel="icon" type="image/png" href="./images/green.png">
 </head>
 
-<!-- Players -->
-<img src="./images/blue.png" id="blue" class="playerImg">
-<img src="./images/yellow.png" id="yellow" class="playerImg">
-<img src="./images/green.png" id="green" class="playerImg">
-<!-- playerShadow -->
-<div id="blue_shadow" class="playerShadow"></div>
-<div id="yellow_shadow" class="playerShadow"></div>
-<div id="green_shadow" class="playerShadow"></div>
-<!-- Background -->
-<img src="./images/offwhite.jpg" id="offwhite" style="display: none;">
-<img src="./images/electric.gif" id="electric" class="electric">
+<body>
+    <!-- <div class="start" id="startPoint" style="font-size: x-large;position: absolute;z-index: 9;top: 70px;">0</div>
+    <div class="start" id="endPoint" style="font-size: x-large;position: absolute;z-index: 9;top: 150px;">0</div> -->
+    <div class="interface" id="interface">
+        <!--[0] center Logo -->
+        <img class="logo" src="./images/Logo.png">
+        <!--[1] Human playerType -->
+        <div class="playerType">
+            <img src="./images/human.svg">
+            <span>human player</span>
+            <div class="counte_container">
+                <img class="arrow" id="backHumanArrow" src="./images/arrow.png">
+                <div id="humanQty">1</div>
+                <img class="arrow" id="forwardHumanArrow" src="./images/arrow.png">
+            </div>
+        </div>
+        <!--[2] Bot playerType -->
+        <div class="playerType">
+            <img src="./images/bot.svg">
+            <span>Bot player</span>
+            <div class="counte_container">
+                <img src="./images/arrow.png" class="arrow" id="backBotArrow">
+                <div id="botQty">2</div>
+                <img src="./images/arrow.png" class="arrow" id="forwardBotArrow">
+            </div>
+        </div>
+        <!-- Btn -->
+        <button class="interface-btn" id="interface-btn">Select</button>
+    </div>
+    <div class="gameMenu" id="gameMenu">
+        <div class="title">
+            <h1 id="playerName">Player 1 </h1>
+            <h2 id="playerColor">Green</h2>
+        </div>
+        <main>
+            <div id="selectedPlayer">
+                <img src="./images/green.png" alt="selectedPainterImage" id="selectedPainterImage">
+            </div>
+            <div class="information">
+                <div class="keys">
+                    <div class="label">Keys</div>
+                    <div class="above">
+                        <div id="up">↑</div>
+                    </div>
+                    <div class="below">
+                        <div id="left">←</div>
+                        <div id="down">↓</div>
+                        <div id="right">→</div>
+                    </div>
 
-<!-- Gifts -->
-<img src="./images/speed.png" id="speed" style="display: none;">
-<img src="./images/spot.png" id="spot" style="display: none;">
-<img src="./images/spread.png" id="spread" style="display: none;">
-<img src="./images/effect.gif" id="effect" style="display: none;">
-<img src="./images/thunder.gif" id="thunder" style="display: none;">
+                </div>
+                <div class="play-btn" id="SelectBtn">
+                    Select
+                </div>
+            </div>
+        </main>
+        <div class="slider">
+            <div class="player active" id="green">
+                <img src="./images/green.png">
+            </div>
+            <div class="player" id="blue">
+                <img src="./images/blue.png">
+            </div>
+            <div class="player" id="orange">
+                <img src="./images/orange.png">
+            </div>
+            <div class="player" id="purple">
+                <img src="./images/purple.png">
+            </div>
+            <div class="player" id="brown">
+                <img src="./images/brown.png">
+            </div>
+            <div class="player" id="red">
+                <img src="./images/red.png">
+            </div>
+            <div class="player" id="black">
+                <img src="./images/black.png">
+            </div>
+
+        </div>
+
+    </div>
+    <div class="gameBoard" id="gameBoard">
+
+
+        <!-- Background -->
+        <img src="./images/electric.gif" id="electric" class="electric">
+        <img src="./images/offwhite.jpg" id="offwhite" style="display: none;">
+        <!-- Gifts -->
+        <img src="./images/speed.png" id="speed" style="display: none;">
+        <img src="./images/spot.png" id="spot" style="display: none;">
+        <img src="./images/spread.png" id="spread" style="display: none;">
+        <img src="./images/crawlers.png" id="crawlers" style="display: none;">
+
+        <img src="./images/effect.gif" id="effect" style="display: none;">
+
+        <img src="./images/slow.png" id="slow" style="display: none;">
+        <img src="./images/big.png" id="big" style="display: none;">
 
 
 
-<canvas id="canvas1"></canvas>
+        <canvas id="canvas1"></canvas>
+        <div class="timeline">
+            <span>Round 1</span>
+            <span>Time</span>
+            <button onclick="var gg = 0;setInterval(()=>{ 
+    gg++;
+    document.getElementById('perc').innerHTML = gg;
 
-<div class="timeline">
-    <span>Round 1</span>
-    <span>Time</span>
-    <ul class="units" id="timeline_units">
-    </ul>
-</div>
+    },100)">Check</button>
+            <ul class="units" id="timeline_units">
+            </ul>
+        </div>
+        <audio id="gift_sound" controls>
+            <source src="./Audios/mixkit-long-pop-2358.wav" type="audio/wav">
+        </audio>
+    </div>
+    <div class="leaderBoard center hidden" id='leaderBoard'>
+        <div class="title">
+            Leaderboard Result
+        </div>
+    </div>
 
-<script src="Main.js" type="module"></script>
 
-<audio id="gift_sound" controls>
-    <source src="./Audios/mixkit-long-pop-2358.wav" type="audio/wav">
-</audio>
+    <div class="dot" id="dot"></div>
+    <script src="Main.js" type="module"></script>
 </body>
 
 </html>

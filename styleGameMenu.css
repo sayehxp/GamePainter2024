@@ -1,0 +1,157 @@
+.gameMenu {
+    position: absolute;
+    display: none;
+    width: 100%;
+    height: 100vh;
+    background: radial-gradient(circle, rgba(123, 237, 159, 1) 5%, rgba(211, 211, 211, 1) 95%);
+}
+
+.title {
+    font-family: sans-serif;
+    color: black;
+    opacity: 0.8;
+}
+h2{
+    text-align: center;
+    opacity: 0.6;
+    color: white;
+}
+h1
+{
+    text-transform: uppercase;
+    text-align: center;
+    padding-top: 50px;
+    color: white;
+    text-shadow: 1px 1px black;
+}
+
+main {
+    display: flex;
+    height: 70%;
+    justify-content: center;
+    align-items: center;
+}
+
+#selectedPlayer img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.information {
+    position: absolute;
+    right: 100px;
+}
+
+.keys {
+
+
+    .label {
+        color: white;
+        font-size: x-large;
+        text-shadow: 1px 1px 5px rgb(65, 65, 65);
+        transform: translateY(-30px);
+    }
+
+    .above,
+    .below {
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+    }
+
+
+
+
+    .below *,
+    .above * {
+        width: 65px;
+        height: 65px;
+        border: 1px solid grey;
+        margin-top: 5px;
+        text-align: center;
+        font-size: xx-large;
+        line-height: 2em;
+        color: #eae9e9;
+        text-shadow: 1px 1px 5px rgb(65, 65, 65);
+        text-transform: uppercase;
+        font-family: sans-serif;
+
+    }
+
+
+
+
+}
+
+.slider {
+    display: flex;
+    justify-content: center;
+    border-block: 1px solid rgba(237, 226, 226, 0.478);
+    border-bottom: 1px solid rgba(128, 128, 128, 0.478);
+}
+
+.player {
+    position: relative;
+    border: 1px solid rgb(144, 144, 144);
+    padding: 15px;
+    margin: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    background: rgba(22, 15, 15, 0.164);
+    transition: background 0.2s;
+    overflow: hidden;
+}
+
+.selected::after {
+    content: "selected ";
+    top: 50%;
+    left: 50%;
+    padding: 5px;
+    text-align: center;
+    transform: translate(-50%, -50%)rotate(10deg);
+    background: rgba(72, 73, 72, 0.682);
+    font-weight: 900;
+    text-transform: uppercase;
+    font-family: sans-serif;
+    color: white;
+    position: absolute;
+    font-size: large;
+
+}
+
+.player img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    pointer-events: none;
+    filter: contrast(0.8)brightness(0.7);
+}
+
+.player.active {
+    background: rgba(254, 250, 250, 0.623);
+    border: 1px solid rgba(255, 68, 0, 0.622);
+    box-shadow: 1px 1px rgba(248, 101, 48, 0.401);
+
+    & img {
+        filter: contrast(1)brightness(1);
+    }
+}
+
+
+.play-btn {
+    color: white;
+    font-family: sans-serif;
+    font-weight: 700;
+    font-size: xx-large;
+    border: 1px solid white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 50px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: lightgray;
+        color: #454545;
+    }
+}

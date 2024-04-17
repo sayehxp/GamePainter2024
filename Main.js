@@ -1,65 +1,45 @@
-import { Player } from './Player.js';
-import { Keyboard } from './Keyboard.js';
-import { PlayerControls } from './PlayerControls.js';
-import { Background } from './Background.js';
-import { Gift } from './Gift.js';
-import { TimeLine } from './Timeline.js';
-import { BotPlayer } from './BotPlayer.js';
+import { GameBoard } from './GameBoard.js';
+import { GameInterface } from './GameInterface.js';
+import { GameMenu } from './GameMenu.js';
 
-
-
-class GameBoard {
-
-    constructor(width, height, context) {
-        this.width = width;
-        this.height = height;
-        this.context = context;
-        this.players = {
-            // player1: new Player(this, 100, 100, 'green', "#008b68"),
-            player2: new Player(this, 200, 100, 'blue', '#4062ca'),
-            player3: new Player(this, 300, 100, 'yellow', '#8061bb')
-        }
-        this.keyboard = new Keyboard();
-        this.background = new Background(this, 'offwhite');
-        this.gift = new Gift(this, 20, 3 * 100);
-        this.timeline = new TimeLine();
-        this.botPlayer = new BotPlayer(this, 400, 100, 'green', '#008b68');
-
-    }
-
-    update() {
-        this.gift.update();
-        this.timeline.update();
-        for (const player in this.players) {
-            this.players[player].update(PlayerControls(player));
-            this.players[player].recognizeGift();
-        }
-        this.botPlayer.update()
-    }
-
-
-    draw() {
-        this.gift.draw();
-        this.timeline.draw();
-        for (const player in this.players) {
-            this.players[player].draw();
-        }
-        this.botPlayer.draw();
-
-    }
-
+window.onload = () => {
+    localStorage.removeItem('selectedPlayers')
 }
 
+const gameInterface = new GameInterface();
+const gameMenu = new GameMenu();
+const gameBoard = new GameBoard();
+
+gameInterface.show();
+document.getElementById('interface-btn').onclick = () => {
+    gameInterface.close();
+    if (gameInterface.humanQty.innerHTML > 0) {
+        gameMenu.show();
+    } else {
+        gameMenu.close();
+        gameBoard.addPlayers([])
+        gameBoard.addBots(gameMenu.getBots(gameInterface.botQty.innerHTML))
+        gameBoard.show();
+        renderFrame()
+    }
+}
+
+document.getElementById('SelectBtn').onclick = () => {
+
+    gameMenu.selectBtn(gameInterface.humanQty.innerHTML, gameInterface.botQty.innerHTML)
+
+    if (gameMenu.ready) {
+        gameMenu.close();
+        gameBoard.addPlayers(gameMenu.selectedPlayers)
+        gameBoard.addBots(gameMenu.selectedBots)
+        gameBoard.show();
+        renderFrame()
+
+    }
+};
 
 
 
-
-const canvas = document.getElementById('canvas1');
-const context = canvas.getContext('2d');
-canvas.width = window.innerWidth - 10;
-canvas.height = window.innerHeight - 50;
-
-const gameBoard = new GameBoard(canvas.width, canvas.height, context);
 function renderFrame() {
     gameBoard.update();
     gameBoard.draw();
@@ -70,5 +50,16 @@ function renderFrame() {
 
 
 
-renderFrame();
+gameMenu.close();
+gameInterface.close();
+gameBoard.addPlayers(['orange' , 'red'])
+gameBoard.addBots(gameMenu.getBots(0))
+gameBoard.show();
+renderFrame()
 
+
+
+
+
+
+                                                                                                                                                                        

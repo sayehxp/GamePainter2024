@@ -1,26 +1,30 @@
+
+
 export class TimeLine {
 
     constructor() {
         this.time = 0;
         this.Units = document.getElementById('timeline_units');
-        this.init()
-
-    }
-
-    init() {
         this.Units.innerHTML = "";
         for (let i = 0; i < 20; i++) {
             this.Units.innerHTML += '<li></li>'
         }
+
     }
+
+
+
 
 
     update() {
         if (this.time < 2000) {
             this.time++;
         }
-    }
 
+
+
+    
+    }
 
 
     draw() {
@@ -37,6 +41,11 @@ export class TimeLine {
             } else {
                 li.classList.add('active')
             }
+        }
+
+        else if (this.time >= 2000) {
+
+            this.Units.lastChild.classList.add('active')
         }
     }
 

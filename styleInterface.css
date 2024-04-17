@@ -1,0 +1,157 @@
+
+
+.interface{
+    
+    position: absolute;
+    display: flex;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+
+    & *:hover {
+        cursor: pointer;
+    }
+}
+
+
+
+
+.logo {
+    width: 500px;
+    height: 300px;
+    filter: brightness(1.2);
+}
+
+
+
+
+
+.playerType {
+    display: flex;
+    width: 60%;
+    height: 80px;
+    margin-top: 50px;
+    padding-inline: 5px;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.248);
+    z-index: 1;
+}
+
+.playerType span {
+    letter-spacing: 7px;
+    text-transform: uppercase;
+    font-family: fantasy;
+    font-size: xx-large;
+    font-weight: 700;
+    min-width: 50%;
+    color: rgba(1, 1, 1, 0.756);
+    box-shadow: 1px 1px 5px 5px rgba(211, 211, 211, 0.249);
+    text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.941);
+}
+
+.playerType img {
+    width: 50px;
+    height: 50px;
+    margin-inline: 10px;
+}
+
+.counte_container {
+    width: 40%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    text-decoration: underline;
+    font-size: 40px;
+    font-weight: 800;
+    color: #454545;
+}
+
+.arrow {
+    width: 50px;
+    height: 50px;
+
+
+    &:nth-of-type(1) {
+        transform: scale(-1);
+    }
+
+    &:hover {
+        filter: brightness(5);
+    }
+}
+
+
+
+.interface-btn {
+    padding-inline: 50px;
+    padding-block: 20px;
+    border: 1px solid grey;
+    background-color: rgba(255, 255, 255, 0.248);
+
+    margin-top: auto;
+    margin-bottom: 30px;
+    /* text */
+    font-size: large;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #353535;
+
+    /* seudo */
+    &:hover {
+        color: white;
+        background: #994d6f;
+    }
+}
+
+
+
+
+@media (max-width: 992px) {
+
+
+    .playerType {
+        width: 70%;
+    }
+
+    .playerType span {
+        font-size: x-large;
+    }
+
+    .arrow {
+        max-width: 30px;
+        max-height: 30px;
+    }
+
+
+
+}
+
+
+@media(max-width :768px) {
+
+    .playerType span {
+        letter-spacing: 4px;
+        font-size: large;
+    }
+
+
+
+    .playerType {
+        width: 80%;
+    }
+
+    .arrow {
+        max-width: 30px;
+        max-height: 30px;
+    }
+
+    #botQty,
+    #humanQty {
+        font-size: x-large;
+    }
+
+
+}
